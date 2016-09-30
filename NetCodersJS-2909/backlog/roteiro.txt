@@ -1,0 +1,191 @@
+﻿****************************************************************************************
+Este projeto foi inspirado e adaptado do Meetup ofertado por Charles Mendes
+Contato: charlesmendes31@gmail.com - Github: https://github.com/MackMendes/
+
+Modificado por Rogério Cardoso  - Contato: prof.rogeriocardoso@gmail.com
+****************************************************************************************
+
+
+########################################################################################
+Lista dos assuntos abordados:
+
+- 1: Utilização do Chrome para depurar, console, inspecionar elementos, olhar cabeçalho request, etc. 
+- 2: Tipos de Dados (texto, número, lógico (true ou false)) 
+- 3: Variáveis (escopo global e escolo local) 
+- 4: Operadores Lógicos (===, ==, !==, !=, >, >=, <, <=) 
+- 5: Condicional (If, IfElse, Switch, If Ternário) 
+- 6: Function (Nomeada e Anônima) 
+- 7: Tipos de Dados (Array e Dicionário (Objetos)) 
+- 8: Laços (For, While, Do While) 
+- 9: Manupulando String 
+- 10: Parse (int, float) 
+- 11: isNaN, undefined, null 
+- 12: DOM (Document Object Model)
+- 13: Selectores (document.getBy...) / Manipular e Atribuir (value, text) 
+- 14: Manipulação de Eventos (click, change, blur, focus, mouseover, keydown) 
+########################################################################################
+
+
+=======================================================================================================
+ HTML Base
+ - GitHub (https://github.com/MackMendes/JavaScriptBegin.LGroup).
+
+Fontes: http://www.ecma-international.org/
+        https://www.w3.org/
+        https://validator.w3.org
+
+Informações Iniciais        
+
+ Javascript é uma linguaguem de programação INTERPRETADA pelo navegador (browser), ou seja,
+ no lado do cliente (client-side). Permite que haja interação com o usuário sem a necessidade 
+ de ir ao servidor. Possibilita  manipular informações, estilos ou comportamento na página.
+ "É uma linguagem de script multi-paradigma, baseada em protótipo que é dinâmica, e suporta estilos de 
+ programação orientado a objetos, imperativo e funcional." - Mozilla Developer
+ 
+ "JavaScript foi originalmente desenvolvido por Brendan Eich da Netscape sob o nome de Mocha,
+  posteriormente teve seu nome mudado para LiveScript e por fim JavaScript. Foi lançada pela primeira
+  vez na versão beta do navegador Netscape 2.0 em 1995." - Wikipédia
+
+  A microsoft criou o JScript, incluído no Internet Explorer 3.0, liberado em Agosto de 1996."... 
+  Claro que com a criação de outra linguagem similar ao JavaScript, tinha que haver uma padronização. 
+
+  "Em 1996 a Netscape anunciou que tinha submetido JavaScript para Ecma internacional como 
+  candidato a padrão industrial e o trabalho subsequente resultou na versão padronizada chamada ECMAScript." - Wikipédia
+
+  ECMAScript, é a linguagem base para a do JavaScript. Então as atualizações na ECMAScript vão impactar diretamente as atualizações no JavaScript.
+
+  Hoje em dia é possível utilizar JS no servidor, por meio do Node.js...
+
+  ----- Setup
+  1 - Editor de textos / IDE  (Sublime; Notepad++, Atom, Visual Studio Code, etc)
+  2 - Browser (Chrome)
+  3 - Base do projeto 
+
+  ----- Conteúdo:
+0: Revisão de conceitos (desenvolvimento web; html; css; programação) 
+
+1: Console (usado para depurar código [e aprender muito!!! :)] )
+ - Apresentar o console.
+
+2: <script>
+  - Gerar na propria página o primeiro script, para setar o ano no Footer da página. (textContent)
+    window.onload = ...
+    Base teórica: http://www.w3schools.com/jsref/prop_node_textcontent.asp
+
+3: No projeto, vamos criar uma pasta "js" e dentro dela a "shared" (js/shared).
+ - E dentro util.js (1º). Depois retirar o código criado na página e adicionar nesse arquivo separado.
+   ** Reforçar sobre as duas formas de usar scripts JS (interno/externo)
+
+   DOM: (Document Object Model) Modelo de Objeto de Documento. 
+   A medida que o browser carrega e interpreta a página, ele cria uma árvore de objetos com os elementos da página. Esses objetos podem ser manipulados por uma linguagem script, no nosso caso o JavaScript! 
+
+ "DOM é a interface entre a linguagem Javascript e os objetos do HTML" - w3c
+ "DOM é uma convenção multiplataforma e independente de linguagem para representação e interação com objetos em documentos HTML, XHTML e XML." - Wikipedia
+
+   Base teórica: 
+       - http://www.w3schools.com/js/js_htmldom.asp
+       - http://www.w3schools.com/jsref/
+       - http://tableless.com.br/tenha-o-dom/
+       - http://www.w3schools.com/js/js_objects.asp
+
+4: Começar o Cadastro de Produtos
+  - Campos: Nome(string), Código(núm), Categoria(DropDownList), 
+            Promocao(checkbox), FimPromocao(date), Estoque([0-disponível, 1-sob encomenda, 2-inativo])
+
+  - Criar: Nome, Código, Categoria, Promoção, FimPromoção, Estoque e um Botão
+  - Criar: uma div para mostrar as notificações de erro ou sucesso.
+
+5: Cadastrar:
+  - Criar pasta "home" dentro da js; dela o arquivo cadastrar.js;  (js/home/cadastrar.js)
+  - Criar a função onCadastrarClick() { return true; return false;};
+  - Criar a função Validar (Nome, Código, Categoria, Final Promoção). Caso não esteja certo: 
+	     MSG   -> '<strong>Atenção: </strong>Preencha os campos em destaque abaixo.'
+	     Class -> (classe erro input: "errorInput"), (classe erro div: "alert, alert-danger")
+
+  - Função LimparMensagensErros(): 
+      document.getElementsByClassName('errorInput');
+      while (listClassErrorInput.length > 0) {
+        listClassErrorInput[0].classList.remove('errorInput');
+      }
+
+	    document.getElementById('divAlert');
+	    (divAlerta.classList.contains('alert') || divAlerta.classList.contains('alert-danger'))
+	    divAlerta.innerHTML = '';
+
+   - Função MensagemSucesso(): '<strong>Sucesso: </strong>Produto cadastrado com sucesso!' 
+     (classe erro div: "alert, alert-success")
+   - Função DesaparecerMensagemSucesso(): 
+     uso da função setTimeout   //setTimeout( function () { LimparMensagem(); }, 5000 );
+     Detalhes em: http://www.w3schools.com/jsref/met_win_settimeout.asp
+
+   - Função LimparCampos():     
+		 limpar os campos, usar selectedIndex = 0; e checked = false;
+
+   - Criar na pasta home, index.js  (js/home/index.js);
+   - Dentro do index.js, criar o array listProdutos. E função AdicionarProduto(produto) (push);
+   - Concluir o cadastro de produto (objeto produto) => AdicionarProduto(produto);
+
+   - Criar no arquivo util.js o Array de Categorias {texto: value: }
+   - Função PreencherDDLCategorias():   var index = 0; do { index++; } while (Categorias.length > index);
+   - Refatorar gerando a função: ExecutarTodasFuncoes();
+ 
+6: Listar:
+
+   - Na página, table: criar thead (tr/ <th>#</th>) e tbody* (tr / <td></td>); 
+   - Criar arquivo listar.js  (js/home/listar.js).
+   - Função ListarProdutos(): 
+		* verificar se a lista de produtos esta null ou undefined com if ternário;
+		* for normal
+		* '"<a href='javascript:void(0)'">Excluir</a>"' (ExcluirProduto(" + i.toString() + ");)
+
+	- Função ExcluirProduto(index): listProdutos.splice(index, 1);
+   
+
+7: Brincar com os eventos e manipulação de string:
+
+   + Blur na data Final de Promoção
+    - Função onValidaDataFimPromocaoBlur(domHtml): 
+		* var arrayDiaMesAno = domHtml.value.split('/');
+		* Validar Quantidade de 3...
+		* Validar se o que foi digitado só tem números
+		* Validar se a data esta correta... 
+			var data = new Date(ano, mes, dia);
+            if (data.getDate() !== dia || data.getMonth() !== mes || data.getFullYear() !== ano) {
+	   
+	+ Change Categoria
+	 - onShowValorChange(domHtml):
+		* lblValorDDLCategoria.textContent = domHtml.options[domHtml.selectedIndex].text;
+
+	+ KeyDown no Código
+	 - onValidarCodigoKeyDown(evt):
+	  * var tecla = (evt.keyCode ? evt.keyCode : evt.charCode);
+	  * (tecla >= 48 && tecla <= 59) || (tecla >= 96 && tecla <= 105)
+	  * lblValorKeyPressCodigo.textContent = 'Numérico';
+
+	 + MouseOver/MouseOut grid
+	  - onProdutoAtivoMouseOver/onProdutoAtivoMouseOut:
+	   * domHtml.style.color e 
+       domHtml.style.fontWeight
+
+8: Tag <noscript> e desativando o javascript da página, através do FireFox ou Chrome
+
+9: Será que já está craque em JS?
+   http://www.w3schools.com/js/js_quiz.asp
+
+10: Sugestões de Fontes de Estudo: 
+	***** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide 
+	***** http://www.codecademy.com/pt-BR/tracks/javascript   - Academia On-line de JavaScript
+	***** http://www.w3schools.com/js/ 
+  ***** https://www.javascript.com
+  ***** https://www.coursera.org  (muitos cursos gratuitos sobre Computação e outros temas)
+
+	Sugestões de Livros: 
+	* Dominando JavaScript Com Jquery - Casa do Código (PT)
+	* Secrets Of The Javascript Ninja - John Resig and Bear Bibeault
+  * Web Design with HTML, CSS, JavaScript and jQuery Set - Jon Duckett
+  * HTML and CSS: Design and Build Websites - Jon Duckett
+  * Learning Web Design: A Beginner's Guide to HTML, CSS, JavaScript, and Web Graphics - Jennifer N Robbins
+  * JavaScript: The Definitive Guide: Activate Your Web Pages - David Flanagan
+  * JavaScript: The Good Parts - Douglas Crockford
+  * Thinking in JavaScript - Aravind Shenoy
+  * Head First JavaScript Programming - Eric T. Freeman and Elisabeth Robson
